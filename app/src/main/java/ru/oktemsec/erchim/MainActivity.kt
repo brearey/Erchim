@@ -6,8 +6,9 @@ import android.util.Log
 import android.widget.ListView
 import ru.oktemsec.erchim.models.Product
 import android.widget.ArrayAdapter
-
-
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import ru.oktemsec.erchim.adapters.Adapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,29 +16,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listView = findViewById<ListView>(R.id.list_view)
-
-        val prod:Product = Product("хлеб", 48, "тут хлеб хороший Немюгюнский", "магазин \"Сардана\"")
-        Log.d("bearey", prod.name + " " + prod.price)
-
-        val catNames = arrayOf(
-            "Рыжик", "Барсик", "Мурзик", "Мурка", "Васька",
-            "Томасина", "Кристина", "Пушок", "Дымка", "Кузя",
-            "Китти", "Масяня", "Симба"
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = Adapter(
+            listOf(
+                Product("яблоки", 113, "описание товара", "Магазин Алгыс"),
+                Product("Свинина", 286, "описание товара", "Магазин Алгыс"),
+                Product("Рыба", 189, "описание товара", "Магазин Алгыс"),
+                Product("Яйца", 80, "описание товара", "Магазин Алгыс"),
+                Product("Сахар", 50, "описание товара", "Магазин Алгыс"),
+                Product("Соль", 14, "описание товара", "Магазин Алгыс"),
+                Product("Чай", 952, "описание товара", "Магазин Алгыс"),
+                Product("Хлеб", 58, "ржаной", "Магазин Алгыс")
+            )
         )
-
-        val products = arrayOf(
-            Product("яблоки", 113, "обычные", "Магазин Алгыс"),
-            Product("Свинина", 286, "обычные", "Магазин Алгыс"),
-            Product("Рыба", 189, "обычные", "Магазин Алгыс"),
-            Product("Яйца", 80, "обычные", "Магазин Алгыс"),
-            Product("Сахар", 50, "обычные", "Магазин Алгыс"),
-            Product("Соль", 14, "обычные", "Магазин Алгыс"),
-            Product("Чай", 952, "обычные", "Магазин Алгыс"),
-            Product("Хлеб", 58, "ржаной", "Магазин Алгыс")
-        )
-
-        val adapter: ArrayAdapter<Product> = ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1, products)
-        listView.adapter = adapter
     }
 }
